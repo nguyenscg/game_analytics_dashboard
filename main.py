@@ -12,14 +12,14 @@ import json
 
 new_data = [
     {
-        "puuid": "67890",
-        "gameName": "Solzi",
-        "tagLine": "zzz",
-        "average_kills": 15,
-        "average_deaths": 14,
-        "win_rate": 52.72,
-        "total_matches": 310,
-        "most_played_agent": "Omen",
+        "puuid": "12345",
+        "gameName": "Soli",
+        "tagLine": "awice",
+        "average_kills": 18,
+        "average_deaths": 10,
+        "win_rate": 66.67,
+        "total_matches": 132,
+        "most_played_agents": "Jett"
     }
 ]
 
