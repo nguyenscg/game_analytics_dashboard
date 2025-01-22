@@ -10,20 +10,9 @@
 # first import json library
 import json
 
-# create mock_data into .json
-new_data = [
-    {
-        "puuid": "12345",
-        "gameName": "Soli",
-        "tagLine": "awice",
-        "average_kills": 18,
-        "average_deaths": 10,
-        "win_rate": 66.67,
-        "total_matches": 132,
-        "most_played_agents": "Jett",
-    }
-]
-
-# save/create the new data into a mock_data.json
-with open("mock_data.json", "w") as data_file:
-    json.dump(new_data, data_file, indent=4)
+# load the player data
+def load_player_data():
+    with open("mock_data.json", "r") as data_file:
+        data = json.load(data_file)
+        print(data)
+load_player_data()
