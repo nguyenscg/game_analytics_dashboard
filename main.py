@@ -10,6 +10,7 @@
 # first import json library
 import json
 
+# data to create mock_data.json with
 new_data = [
     {
         "puuid": "12345",
@@ -25,6 +26,7 @@ new_data = [
 
 # load the player data
 def load_player_data():
+    # error handling
     try: 
         with open("mock_data.json", "r") as data_file:
             data = json.load(data_file)
@@ -35,4 +37,9 @@ def load_player_data():
         with open("mock_data.json", "w") as data_file:
             json.dump(new_data, data_file, indent=4)
         print("mock_data has been created successfully.")
-load_player_data()
+        return new_data
+data = load_player_data()
+print(data)
+
+# first we load the data.. now  we create a function to 'search' for a player based on gameName and tagLine
+# search function with take the user's input of gameName and tagLine.. search for the player
