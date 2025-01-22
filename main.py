@@ -20,7 +20,7 @@ new_data = [
         "average_deaths": 10,
         "win_rate": 66.67,
         "total_matches": 132,
-        "most_played_agents": "Jett"
+        "most_played_agent": "Jett"
     }
 ]
 
@@ -63,6 +63,6 @@ if player:
           f"Average Deaths: {player['average_deaths']}\n"
           f"Win rate: {player['win_rate']}%\n"
           f"Total Matches: {player['total_matches']}\n"
-          f"Most Played Agent: {player['most_played_agents']}")
+          f"Most Played Agent: {player['most_played_agent']}")
 else:
     print(f"Player {player_name}#{player_tag} cannot be found.")
