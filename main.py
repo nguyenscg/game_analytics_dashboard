@@ -10,9 +10,29 @@
 # first import json library
 import json
 
+new_data = [
+    {
+        "puuid": "67890",
+        "gameName": "Solzi",
+        "tagLine": "zzz",
+        "average_kills": 15,
+        "average_deaths": 14,
+        "win_rate": 52.72,
+        "total_matches": 310,
+        "most_played_agent": "Omen",
+    }
+]
+
 # load the player data
 def load_player_data():
-    with open("mock_data.json", "r") as data_file:
-        data = json.load(data_file)
-        print(data)
+    try: 
+        with open("mock_data.json", "r") as data_file:
+            data = json.load(data_file)
+            print("Loaded the data successfully!")
+            return data
+    except FileNotFoundError:
+        print("Error. The file 'mock_data.json' was not found. Creating new file..")
+        with open("mock_data.json", "w") as data_file:
+            json.dump(new_data, data_file, indent=4)
+        print("mock_data has been created successfully.")
 load_player_data()
