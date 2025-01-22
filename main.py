@@ -54,6 +54,11 @@ player_tag = input("Enter tag: ").strip()
 player = search_player(data, player_name, player_tag)
 
 if player:
-    print(f"Player found: {player}")
+    print(f"{player["gameName"]}#{player["tagLine"]}'s Stats:\n"
+          f"Average Kills: {player["average_kills"]}\n"
+          f"Average Deaths: {player["average_deaths"]}\n"
+          f"Win rate: {player["win_rate"]}%\n"
+          f"Total Matches: {player["total_matches"]}\n"
+          f"Most Played Agent: {player["most_played_agents"]}")
 else:
-    print(f"Player {player_name}#{player_tag} cannot be found")
+    print(f"Player {player_name}#{player_tag} cannot be found.")
