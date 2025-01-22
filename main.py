@@ -26,4 +26,4 @@ new_data = [
 
 # save/create the new data into a mock_data.json
 with open("mock_data.json", "w") as data_file:
-    json.dump(new_data, data_file)
+    json.dump(new_data, data_file, indent=4)
