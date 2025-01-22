@@ -49,7 +49,11 @@ def search_player(data, username, tag):
             return player
 # get user's input to enter the gameName and tagLine || add strip() method to ensure there's no whitespace when the user enters the name and tag
 player_name = input("Enter username: ").strip()
+while not player_name:
+    player_name = input("Username cannot be empty. Please enter username: ").strip()
 player_tag = input("Enter tag: ").strip()
+while not player_tag:
+    player_tag = input("Tag cannot be empty. Please enter a tag: ").strip()
 
 player = search_player(data, player_name, player_tag)
 
