@@ -45,11 +45,15 @@ print(data)
 # search function with take the user's input of gameName and tagLine.. search for the player in the database
 def search_player(data, username, tag):
     for player in data:
-        if player["gameName"] == username and player["tagLine"] == tag:
+        if player["gameName"].lower() == username.lower() and player["tagLine"].lower() == tag.lower():
             return player
 # get user's input to enter the gameName and tagLine
-player_name = input("Enter username: ").lower()
-player_tag = input("Enter tag: ").lower()
+player_name = input("Enter username: ")
+player_tag = input("Enter tag: ")
 
 player = search_player(data, player_name, player_tag)
-print(player)
+
+if player:
+    print(f"Player found: {player}")
+else:
+    print(f"Player {player_name}#{player_tag} cannot be found")
