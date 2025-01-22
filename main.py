@@ -47,9 +47,9 @@ def search_player(data, username, tag):
     for player in data:
         if player["gameName"].lower() == username.lower() and player["tagLine"].lower() == tag.lower():
             return player
-# get user's input to enter the gameName and tagLine
-player_name = input("Enter username: ")
-player_tag = input("Enter tag: ")
+# get user's input to enter the gameName and tagLine || add strip() method to ensure there's no whitespace when the user enters the name and tag
+player_name = input("Enter username: ").strip()
+player_tag = input("Enter tag: ").strip()
 
 player = search_player(data, player_name, player_tag)
 
