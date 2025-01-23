@@ -70,9 +70,9 @@ else:
 # update a player's stats
 def update_player(data, username, tag):
     # search for player
-    player = search_player(data, player_name, player_tag)
+    player = search_player(data, username, tag)
     if not player:
-        print(f"Player {player_name}#{player_tag} does not exist")
+        print(f"Player {username}#{tag} does not exist")
 
     print(f"Current Stats for {player_name}#{player_tag}\n"
           f"Average Kills: {player["average_kills"]}"
@@ -117,8 +117,10 @@ data = update_player(data, player_name, player_tag)
 
 # Delete Function
 def delete_player(data, username, tag):
-    # search for player
-
+    # search for player (call on search function)
+    player = search_player(data, username, tag)
+    if not player:
+        print(f"{username}#{tag} does not exist.")
 
     # confirm delete
 
