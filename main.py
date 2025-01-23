@@ -123,9 +123,22 @@ def delete_player(data, username, tag):
         print(f"{username}#{tag} does not exist.")
 
     # confirm delete
-
-    # delete player
+    # prompt for user if they want to delete username#tag
+    confirm = input(f"Are you sure you want to delete {username}#{tag}? (Yes/No)")
+    if confirm.lower() != 'yes':
+        print("Deletion cancelled.")
+        return data
     
-    # save changes
+    # delete player
+    data.remove(player)
+    print(f"{username}#{tag} has been removed.")
 
+    # save changes
+    with open("mock_data.json", "w") as data_file:
+        json.dump(data, data_file, indent=4)
+        print("Changes saved successfully!")
+player_name = input("Enter username: ")
+player_tag = input("Enter tag: ")
+
+data = delete_player(data, player_name, player_tag)
     # feedback -- success message that the deletion was successful
