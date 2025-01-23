@@ -114,3 +114,16 @@ def update_player(data, username, tag):
     return data
 
 data = update_player(data, player_name, player_tag)
+
+# Delete Function
+def delete_player(data, username, tag):
+    # search for player
+
+
+    # confirm delete
+
+    # delete player
+    
+    # save changes
+
+    # feedback -- success message that the deletion was successful
