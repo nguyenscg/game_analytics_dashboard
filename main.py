@@ -66,3 +66,17 @@ if player:
           f"Most Played Agent: {player['most_played_agent']}")
 else:
     print(f"Player {player_name}#{player_tag} cannot be found.")
+
+# update a player's stats
+def update_player():
+    # search for player
+    player = search_player(data, player_name, player_tag)
+    if not player:
+        print(f"Player {player_name}#{player_tag} does not exist")
+
+    print(f"Current Stats for {player_name}#{player_tag}\n"
+          f"Average Kills: {player["average_kills"]}"
+          f"Average Deaths: {player["average_deaths"]}"
+          f"Win Rate: {player["win_rate"]}"
+          f"Total Matches: {player["total_matches"]}"
+          f"Most Played Agent: {player["most_played_agent"]}")
