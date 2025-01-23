@@ -39,7 +39,7 @@ def load_player_data():
         print("mock_data has been created successfully.")
         return new_data
 data = load_player_data()
-print(data)
+# print(data)
 
 # first we load the data.. now  we create a function to 'search' for a player based on gameName and tagLine
 # search function with take the user's input of gameName and tagLine.. search for the player in the database
@@ -47,25 +47,25 @@ def search_player(data, username, tag):
     for player in data:
         if player["gameName"].lower() == username.lower() and player["tagLine"].lower() == tag.lower():
             return player
-# get user's input to enter the gameName and tagLine || add strip() method to ensure there's no whitespace when the user enters the name and tag
-player_name = input("Enter username: ").strip()
-while not player_name:
-    player_name = input("Username cannot be empty. Please enter username: ").strip()
-player_tag = input("Enter tag: ").strip()
-while not player_tag:
-    player_tag = input("Tag cannot be empty. Please enter a tag: ").strip()
+    # get user's input to enter the gameName and tagLine || add strip() method to ensure there's no whitespace when the user enters the name and tag
+    player_name = input("Enter username: ").strip()
+    while not player_name:
+        player_name = input("Username cannot be empty. Please enter username: ").strip()
+    player_tag = input("Enter tag: ").strip()
+    while not player_tag:
+        player_tag = input("Tag cannot be empty. Please enter a tag: ").strip()
 
-player = search_player(data, player_name, player_tag)
+    player = search_player(data, player_name, player_tag)
 
-if player:
-    print(f"{player['gameName']}#{player['tagLine']}'s Stats:\n"
-          f"Average Kills: {player['average_kills']}\n"
-          f"Average Deaths: {player['average_deaths']}\n"
-          f"Win rate: {player['win_rate']}%\n"
-          f"Total Matches: {player['total_matches']}\n"
-          f"Most Played Agent: {player['most_played_agent']}")
-else:
-    print(f"Player {player_name}#{player_tag} cannot be found.")
+    if player:
+        print(f"{player['gameName']}#{player['tagLine']}'s Stats:\n"
+            f"Average Kills: {player['average_kills']}\n"
+            f"Average Deaths: {player['average_deaths']}\n"
+            f"Win rate: {player['win_rate']}%\n"
+            f"Total Matches: {player['total_matches']}\n"
+            f"Most Played Agent: {player['most_played_agent']}")
+    else:
+        print(f"Player {player_name}#{player_tag} cannot be found.")
 
 # update a player's stats
 def update_player(data, username, tag):
@@ -113,7 +113,7 @@ def update_player(data, username, tag):
 
     return data
 
-data = update_player(data, player_name, player_tag)
+# data = update_player(data, player_name, player_tag)
 
 # Delete Function
 def delete_player(data, username, tag):
@@ -141,8 +141,18 @@ def delete_player(data, username, tag):
 player_name = input("Enter username: ")
 player_tag = input("Enter tag: ")
 
-data = delete_player(data, player_name, player_tag)
-    # feedback -- success message that the deletion was successful
+# data = delete_player(data, player_name, player_tag)
+#     # feedback -- success message that the deletion was successful
 
 # create a main menu function to give users the options on CRUD
 def main_menu():
+    # Display a list of options to user
+    print("[=======Game Analytics Dashboard======]")
+    print("1. View Player Stats")
+    print("2. Update Player Stats")
+    print("3. Delete Player")
+    print("4. Exit")
+    # Accept the user input of their choice
+    # Call function on user's choice
+    # Allow users to exit menu
+main_menu()
