@@ -74,12 +74,12 @@ def update_player(data, username, tag):
     if not player:
         print(f"Player {username}#{tag} does not exist")
 
-    print(f"Current Stats for {player_name}#{player_tag}\n"
-          f"Average Kills: {player["average_kills"]}"
-          f"Average Deaths: {player["average_deaths"]}"
-          f"Win Rate: {player["win_rate"]}"
-          f"Total Matches: {player["total_matches"]}"
-          f"Most Played Agent: {player["most_played_agent"]}")
+    print(f"Current Stats for {username}#{tag}\n"
+          f"Average Kills: {player["average_kills"]}\n"
+          f"Average Deaths: {player["average_deaths"]}\n"
+          f"Win Rate: {player["win_rate"]}\n"
+          f"Total Matches: {player["total_matches"]}\n"
+          f"Most Played Agent: {player["most_played_agent"]}\n")
     # Prompt for user to select a stat to update
     stat_to_update = input("Which stat would you like to update?")
     current_stat = {
@@ -138,14 +138,14 @@ def delete_player(data, username, tag):
     with open("mock_data.json", "w") as data_file:
         json.dump(data, data_file, indent=4)
         print("Changes saved successfully!")
-player_name = input("Enter username: ")
-player_tag = input("Enter tag: ")
+# player_name = input("Enter username: ")
+# player_tag = input("Enter tag: ")
 
 # data = delete_player(data, player_name, player_tag)
 #     # feedback -- success message that the deletion was successful
 
 # create a main menu function to give users the options on CRUD
-def main_menu():
+def main_menu(data):
     # Display a list of options to user
     print("[=======Game Analytics Dashboard======]")
     print("1. View Player Stats")
@@ -153,6 +153,30 @@ def main_menu():
     print("3. Delete Player")
     print("4. Exit")
     # Accept the user input of their choice
+    choice = input("Which would you like to do? (1-4): ").strip()
     # Call function on user's choice
+    # So choice 1 should call onto the search function to look for the player and dislpay their stats
+    if choice == "1":
+        username = input("Enter a username: ").strip()
+        tag = input("Enter a tag: ").strip()
+        player = search_player(data, username, tag)
+        if player:
+            print(f"===== Stats for {player['gameName']}#{player['tagLine']} =====\n"
+                  f"Average Kills: {player['average_kills']}\n"
+                  f"Average Deaths: {player['average_deaths']}\n"
+                  f"Win Rate: {player['win_rate']}%\n"
+                  f"Total Matches: {player['total_matches']}\n"
+                  f"Most Played Agent: {player['most_played_agent']}")
+        else:
+            print(f"{username}#{tag} not found.")
+    elif choice == "2":
+        username = input("Enter a username: ").strip()
+        tag = input("Enter a tag: ").strip()
+        data = update_player(data, username, tag)
+
+    # choice 2 should call onto the update_player function
+    # choice 3 should call onto delete_player function
+    # choice 4 should exit
     # Allow users to exit menu
-main_menu()
+    return data
+main_menu(data)
