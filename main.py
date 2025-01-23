@@ -121,6 +121,7 @@ def delete_player(data, username, tag):
     player = search_player(data, username, tag)
     if not player:
         print(f"{username}#{tag} does not exist.")
+        return data
 
     # confirm delete
     # prompt for user if they want to delete username#tag
@@ -142,3 +143,6 @@ player_tag = input("Enter tag: ")
 
 data = delete_player(data, player_name, player_tag)
     # feedback -- success message that the deletion was successful
+
+# create a main menu function to give users the options on CRUD
+def main_menu():
