@@ -68,7 +68,7 @@ else:
     print(f"Player {player_name}#{player_tag} cannot be found.")
 
 # update a player's stats
-def update_player():
+def update_player(data, username, tag):
     # search for player
     player = search_player(data, player_name, player_tag)
     if not player:
@@ -80,3 +80,37 @@ def update_player():
           f"Win Rate: {player["win_rate"]}"
           f"Total Matches: {player["total_matches"]}"
           f"Most Played Agent: {player["most_played_agent"]}")
+    # Prompt for user to select a stat to update
+    stat_to_update = input("Which stat would you like to update?")
+    current_stat = {
+        "1": "average_kills",
+        "2": "average_deaths",
+        "3": "win_rate",
+        "4": "total_matches",
+        "5": "most_played_agent",
+    }
+
+    if stat_to_update not in current_stat:
+        print("Invalid. Please enter a stat to update.")
+        return data
+
+    stat = current_stat[stat_to_update]
+    new_stat = input(f"Enter a new value for {stat}: ").strip()
+
+    if stat in ['average_kills', 'average_deaths', 'win_rate', 'total_matches', 'most_played_agent']:
+        if not new_stat.isdigit():
+            print("Invalid input. Only numeric values.")
+            return data
+        new_stat = int(new_stat) if stat != "win_rate" else float(new_stat)
+
+    player[stat] = new_stat
+    print(f"{stat} has been updated to {new_stat}.")
+
+    # save changes to file
+    with open("mock_data.json", "w") as data_file:
+        json.dump(data, data_file, indent=4)
+    print("Changes saved successfully!")
+
+    return data
+
+data = update_player(data, player_name, player_tag)
