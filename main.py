@@ -179,6 +179,8 @@ def main_menu(data):
         data = delete_player(data, username, tag)
     elif choice == "4":
         print("Exiting.. See you later!")
+    else:
+        print("Invalid choice. Please pick a number between 1 to 4.")
     # choice 2 should call onto the update_player function
     # choice 3 should call onto delete_player function
     # choice 4 should exit
