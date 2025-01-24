@@ -71,52 +71,63 @@ else:
     print(f"{player_name}#{player_tag} not found. Please try again.")
 
 # # update a player's stats
-# def update_player(data, username, tag):
-#     # search for player
-#     player = search_player(data, username, tag)
-#     if not player:
-#         print(f"Player {username}#{tag} does not exist")
+def update_player(data, username, tag):
+    # search for player, call on search function
+    player = search_player(data, username, tag)
 
-#     print(f"Current Stats for {username}#{tag}\n"
-#           f"Average Kills: {player["average_kills"]}\n"
-#           f"Average Deaths: {player["average_deaths"]}\n"
-#           f"Win Rate: {player["win_rate"]}\n"
-#           f"Total Matches: {player["total_matches"]}\n"
-#           f"Most Played Agent: {player["most_played_agent"]}\n")
-#     # Prompt for user to select a stat to update
-#     stat_to_update = input("Which stat would you like to update?")
-#     current_stat = {
-#         "1": "average_kills",
-#         "2": "average_deaths",
-#         "3": "win_rate",
-#         "4": "total_matches",
-#         "5": "most_played_agent",
-#     }
+    # print error message if player not found.
+    if not player:
+        print(f"{username}#{tag} not found.")
+        return data
+    
+    # if player is found, print the current stats
+    print(f"Current Stats for {username}#{tag}\n"
+          f"Average Kills: {player['average_kills']}\n"
+          f"Average Deaths: {player['average_deaths']}\n"
+          f"Win Rate: {player['win_rate']}\n"
+          f"Total Matches: {player['total_matches']}\n"
+          f"Most Played Agent: {player['most_played_agent']}\n")
+    
+    # Prompt for user to select a stat to update
+    stat_to_update = input("Which stat would you like to update? (1-5)")
+    
+    # set dictionary to allow user to pick an option for a stat they want to update
+    current_stat = {
+        "1": "average_kills",
+        "2": "average_deaths",
+        "3": "win_rate",
+        "4": "total_matches",
+        "5": "most_played_agent",
+    }
 
-#     if stat_to_update not in current_stat:
-#         print("Invalid. Please enter a stat to update.")
-#         return data
+    # if there's a stat that is not in the options, print an error message
+    if stat_to_update not in current_stat:
+        print("Invalid. Please enter a stat to update.")
+        return data
+    # store the stat the user picked
+    stat = current_stat[stat_to_update]
+    # store the value the user enters
+    new_stat = input(f"Enter a new value for {stat}: ").strip()
 
-#     stat = current_stat[stat_to_update]
-#     new_stat = input(f"Enter a new value for {stat}: ").strip()
+    # check if the stat that the user picks matches
+    if stat in ['average_kills', 'average_deaths', 'win_rate', 'total_matches', 'most_played_agent']:
+        if not new_stat.isdigit():
+            print("Invalid input. Only numeric values.")
+            return data
+        new_stat = int(new_stat) if stat != "win_rate" else float(new_stat)
 
-#     if stat in ['average_kills', 'average_deaths', 'win_rate', 'total_matches', 'most_played_agent']:
-#         if not new_stat.isdigit():
-#             print("Invalid input. Only numeric values.")
-#             return data
-#         new_stat = int(new_stat) if stat != "win_rate" else float(new_stat)
+    # update the stat
+    player[stat] = new_stat
+    print(f"{stat} has been updated to {new_stat}.")
+    
+    # save changes to file
+    with open("mock_data.json", "w") as data_file:
+        json.dump(data, data_file, indent=4)
+    print("Changes saved successfully!")
 
-#     player[stat] = new_stat
-#     print(f"{stat} has been updated to {new_stat}.")
+    return data
 
-#     # save changes to file
-#     with open("mock_data.json", "w") as data_file:
-#         json.dump(data, data_file, indent=4)
-#     print("Changes saved successfully!")
-
-#     return data
-
-# # data = update_player(data, player_name, player_tag)
+data = update_player(data, player_name, player_tag)
 
 # # Delete Function
 # def delete_player(data, username, tag):
