@@ -89,7 +89,7 @@ def update_player(data, username, tag):
           f"Most Played Agent: {player['most_played_agent']}\n")
     
     # Prompt for user to select a stat to update
-    stat_to_update = input("Which stat would you like to update? (1-5)")
+    stat_to_update = input("Which stat would you like to update? (1-5): ")
     
     # set dictionary to allow user to pick an option for a stat they want to update
     current_stat = {
@@ -104,8 +104,10 @@ def update_player(data, username, tag):
     if stat_to_update not in current_stat:
         print("Invalid. Please enter a stat to update.")
         return data
-    # store the stat the user picked
+    
+    # get stat key from dictionary
     stat = current_stat[stat_to_update]
+
     # store the value the user enters
     new_stat = input(f"Enter a new value for {stat}: ").strip()
 
@@ -118,7 +120,7 @@ def update_player(data, username, tag):
 
     # update the stat
     player[stat] = new_stat
-    print(f"{stat} has been updated to {new_stat}.")
+    print(f"{stat.replace("_", ' ').title()} has been updated to {new_stat}.")
     
     # save changes to file
     with open("mock_data.json", "w") as data_file:
