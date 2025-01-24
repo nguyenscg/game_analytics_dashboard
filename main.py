@@ -173,7 +173,12 @@ def main_menu(data):
         username = input("Enter a username: ").strip()
         tag = input("Enter a tag: ").strip()
         data = update_player(data, username, tag)
-
+    elif choice == "3":
+        username = input("Enter a username: ").strip()
+        tag = input("Enter a tag: ").strip()
+        data = delete_player(data, username, tag)
+    elif choice == "4":
+        print("Exiting.. See you later!")
     # choice 2 should call onto the update_player function
     # choice 3 should call onto delete_player function
     # choice 4 should exit
