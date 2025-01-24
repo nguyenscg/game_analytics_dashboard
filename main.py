@@ -48,11 +48,16 @@ def search_player(data, username, tag):
         if player['gameName'].lower() == username.lower() and player['tagLine'].lower() == tag.lower():
             # returns details of the player if found
             return player
-    return f"{username}#{tag} not found!"
+    # return None if player is not found (no value)
+    return None
 
 
 player_name = input("Enter a username: ").strip()
+while not player_name:
+    player_name = input("Enter a username. Field cannot be empty. ").strip()
 player_tag = input("Enter a tag: ").strip()
+while not player_tag:
+    player_tag = input("Enter a tag. Field cannot be empty. ").strip()
 player = search_player(data, player_name, player_tag)
 
 if player:
@@ -63,7 +68,7 @@ if player:
           f"Total Matches: {player['total_matches']}\n"
           f"Most Played Agent: {player['most_played_agent']}\n")
 else:
-    print(f"{player} not found. Please try again.")
+    print(f"{player_name}#{player_tag} not found. Please try again.")
 
 # # update a player's stats
 # def update_player(data, username, tag):
