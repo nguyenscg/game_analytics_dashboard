@@ -92,6 +92,7 @@ def update_player(data, username, tag):
 
     # check if the stat that the user picks matches
     if stat in ['average_kills', 'average_deaths', 'total_matches']:
+        new_stat = int(new_stat)
         # this checks if it's a number
         if not new_stat.isdigit():
             print("Invalid input. Only enter numbers.")
@@ -144,8 +145,7 @@ def delete_player(data, username, tag):
 # # create a main menu function to give users the options on CRUD
 def main_menu(data):
     # add while loop so it re-prompts the menu screen until user picks option 4 to exit
-    menu_prompt = True
-    while menu_prompt:
+    while True:
         # Display a list of options for the user
         print("[=======Game Analytics Dashboard======]")
         print("1. View Player Stats")
@@ -178,7 +178,7 @@ def main_menu(data):
         # choice 4 should exit the program
         elif choice == "4":
             print("Exiting.. See you later!")
-            menu_prompt = False
+            break
         # else should print an error statement. If choice is invalid.
         else:
             print("Invalid choice. Pick a number between 1 to 4.")
