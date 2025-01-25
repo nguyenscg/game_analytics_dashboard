@@ -88,7 +88,7 @@ def update_player(data, username, tag):
     stat = current_stat[stat_to_update]
 
     # store the value the user enters
-    new_stat = input(f"Enter a new value for {stat}: ").strip()
+    new_stat = input(f"Enter a new value for {stat.replace("_", " ").title()}: ").strip()
 
     # check if the stat that the user picks matches
     if stat in ['average_kills', 'average_deaths', 'total_matches']:
