@@ -65,16 +65,7 @@ def update_player(data, username, tag):
 
     # print error message if player not found.
     if not player:
-        print(f"{username}#{tag} not found.")
         return data
-    
-    # if player is found, print the current stats
-    print(f"Current Stats for {username}#{tag}\n"
-          f"Average Kills: {player['average_kills']}\n"
-          f"Average Deaths: {player['average_deaths']}\n"
-          f"Win Rate: {player['win_rate']}\n"
-          f"Total Matches: {player['total_matches']}\n"
-          f"Most Played Agent: {player['most_played_agent']}\n")
     
     # Prompt for user to select a stat to update
     stat_to_update = input("Which stat would you like to update? (1-5): ")
