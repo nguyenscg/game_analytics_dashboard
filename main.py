@@ -119,8 +119,6 @@ def update_player(data, username, tag):
 
     return data
 
-# data = update_player(data, player_name, player_tag)
-
 # Delete Function
 def delete_player(data, username, tag):
     # search for a player (call on search function)
@@ -142,8 +140,6 @@ def delete_player(data, username, tag):
     with open("mock_data.json", "w") as data_file:
         json.dump(data, data_file, indent=4)
         print("Changes saved successfully!")
-
-# data = delete_player(data, player_name, player_tag)
 
 # # create a main menu function to give users the options on CRUD
 def main_menu(data):
