@@ -166,6 +166,7 @@ def main_menu(data):
     choice = input("Which would you like to do? (1-4): ").strip()
     
     # Call on function based on user's choice
+    # choice 1 should call on the search_player function
     if choice == "1":
         username = input("Enter a username: ").strip()
         while not username:
@@ -174,21 +175,21 @@ def main_menu(data):
         while not tag:
             tag = input("Enter a tag. Field cannot be empty. ").strip()
         search_player(data, username, tag)
-#     elif choice == "2":
-#         username = input("Enter a username: ").strip()
-#         tag = input("Enter a tag: ").strip()
-#         data = update_player(data, username, tag)
-#     elif choice == "3":
-#         username = input("Enter a username: ").strip()
-#         tag = input("Enter a tag: ").strip()
-#         data = delete_player(data, username, tag)
-#     elif choice == "4":
-#         print("Exiting.. See you later!")
-#     else:
-#         print("Invalid choice. Please pick a number between 1 to 4.")
-#     # choice 2 should call onto the update_player function
-#     # choice 3 should call onto delete_player function
-#     # choice 4 should exit
-#     # Allow users to exit menu
-#     return data
+    # choice 2 should call on the update_player function
+    elif choice == "2":
+        username = input("Enter a username: ").strip()
+        tag = input("Enter a tag: ").strip()
+        update_player(data, username, tag)
+    # choice 3 should call on the delete_player function
+    elif choice == "3":
+        username = input("Enter a username: ").strip()
+        tag = input("Enter a tag: ").strip()
+        delete_player(data, username, tag)
+    # choice 4 should exit the program
+    elif choice == "4":
+        print("Exiting.. See you later!")
+    # else should print an error statement. If choice is invalid.
+    else:
+        print("Invalid choice. Pick a number between 1 to 4.")
+    return data
 main_menu(data)
