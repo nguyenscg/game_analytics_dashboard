@@ -92,11 +92,11 @@ def update_player(data, username, tag):
 
     # check if the stat that the user picks matches
     if stat in ['average_kills', 'average_deaths', 'total_matches']:
-        new_stat = int(new_stat)
         # this checks if it's a number
         if not new_stat.isdigit():
             print("Invalid input. Only enter numbers.")
             return data
+        new_stat = int(new_stat)
     elif stat == "win_rate":
         if not round(float(new_stat), 2):
             print("Please enter 0 to 100.")
