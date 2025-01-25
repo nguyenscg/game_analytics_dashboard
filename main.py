@@ -141,6 +141,7 @@ def delete_player(data, username, tag):
     with open("mock_data.json", "w") as data_file:
         json.dump(data, data_file, indent=4)
         print("Changes saved successfully!")
+    return data
 
 # # create a main menu function to give users the options on CRUD
 def main_menu(data):
