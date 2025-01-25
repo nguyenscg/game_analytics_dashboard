@@ -58,25 +58,6 @@ def search_player(data, username, tag):
     print(f"{username}#{tag} not found!")
     return None
 
-
-player_name = input("Enter a username: ").strip()
-while not player_name:
-    player_name = input("Enter a username. Field cannot be empty. ").strip()
-player_tag = input("Enter a tag: ").strip()
-while not player_tag:
-    player_tag = input("Enter a tag. Field cannot be empty. ").strip()
-player = search_player(data, player_name, player_tag)
-
-if player:
-    print(f"===== Stats for {player['gameName']}#{player['tagLine']} =====\n"
-          f"Average Kills: {player['average_kills']}\n"
-          f"Average Deaths: {player['average_deaths']}\n"
-          f"Win Rate: {player['win_rate']}%\n"
-          f"Total Matches: {player['total_matches']}\n"
-          f"Most Played Agent: {player['most_played_agent']}\n")
-else:
-    print(f"{player_name}#{player_tag} not found. Please try again.")
-
 # # update a player's stats
 def update_player(data, username, tag):
     # search for player, call on search function
@@ -186,23 +167,13 @@ def main_menu(data):
     
     # Call on function based on user's choice
     if choice == "1":
-        username = input("Enter a username: ").strip() 
+        username = input("Enter a username: ").strip()
+        while not username:
+            username = input("Enter a username. Field cannot be empty. ").strip() 
         tag = input("Enter a tag: ").strip()
+        while not tag:
+            tag = input("Enter a tag. Field cannot be empty. ").strip()
         search_player(data, username, tag)
-#     # So choice 1 should call onto the search function to look for the player and dislpay their stats
-#     if choice == "1":
-#         username = input("Enter a username: ").strip()
-#         tag = input("Enter a tag: ").strip()
-#         player = search_player(data, username, tag)
-#         if player:
-#             print(f"===== Stats for {player['gameName']}#{player['tagLine']} =====\n"
-#                   f"Average Kills: {player['average_kills']}\n"
-#                   f"Average Deaths: {player['average_deaths']}\n"
-#                   f"Win Rate: {player['win_rate']}%\n"
-#                   f"Total Matches: {player['total_matches']}\n"
-#                   f"Most Played Agent: {player['most_played_agent']}")
-#         else:
-#             print(f"{username}#{tag} not found.")
 #     elif choice == "2":
 #         username = input("Enter a username: ").strip()
 #         tag = input("Enter a tag: ").strip()
