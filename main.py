@@ -112,11 +112,22 @@ def update_player(data, username, tag):
     new_stat = input(f"Enter a new value for {stat}: ").strip()
 
     # check if the stat that the user picks matches
-    if stat in ['average_kills', 'average_deaths', 'win_rate', 'total_matches', 'most_played_agent']:
+    if stat in ['average_kills', 'average_deaths', 'total_matches']:
+        # this checks if it's a number
         if not new_stat.isdigit():
-            print("Invalid input. Only numeric values.")
+            print("Invalid input. Only enter numbers.")
             return data
-        new_stat = int(new_stat) if stat != "win_rate" else float(new_stat)
+    elif stat == "win_rate":
+        if not round(float(new_stat), 2):
+            print("Please enter 0 to 100.")
+            return data
+    elif stat == "most_played_agent":
+        if not new_stat.strip():
+            print("Agent name cannot be empty.")
+            return data
+    else:
+        print("Invalid input. Please try again.")
+        return data
 
     # update the stat
     player[stat] = new_stat
@@ -131,29 +142,29 @@ def update_player(data, username, tag):
 
 data = update_player(data, player_name, player_tag)
 
-# Delete Function
-def delete_player(data, username, tag):
-    # search for a player (call on search function)
-    player = search_player(data, username, tag)
-    if not player:
-        print(f"{username}#{tag} not found!")
-        return data
+# # Delete Function
+# def delete_player(data, username, tag):
+#     # search for a player (call on search function)
+#     player = search_player(data, username, tag)
+#     if not player:
+#         print(f"{username}#{tag} not found!")
+#         return data
     
-    # Prompt for user if they want to delete username#tag, Confirm deletion, print cancelled if user says no
-    confirm = input(f"Are you sure you want to delete {username}#{tag}? (Yes/No): ").lower()
-    if confirm == "yes":
-        data.remove(player)
-        print(f"{username}#{tag} has been removed.")
-    else:
-        print("Deletion cancelled.")
-        return data
+#     # Prompt for user if they want to delete username#tag, Confirm deletion, print cancelled if user says no
+#     confirm = input(f"Are you sure you want to delete {username}#{tag}? (Yes/No): ").lower()
+#     if confirm == "yes":
+#         data.remove(player)
+#         print(f"{username}#{tag} has been removed.")
+#     else:
+#         print("Deletion cancelled.")
+#         return data
     
-    # save changes
-    with open("mock_data.json", "w") as data_file:
-        json.dump(data, data_file, indent=4)
-        print("Changes saved successfully!")
+#     # save changes
+#     with open("mock_data.json", "w") as data_file:
+#         json.dump(data, data_file, indent=4)
+#         print("Changes saved successfully!")
 
-data = delete_player(data, player_name, player_tag)
+# data = delete_player(data, player_name, player_tag)
 
 # # create a main menu function to give users the options on CRUD
 # def main_menu(data):
