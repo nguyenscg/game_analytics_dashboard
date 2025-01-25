@@ -46,9 +46,16 @@ def search_player(data, username, tag):
     # loop through data file to see if a player exists
     for player in data:
         if player['gameName'].lower() == username.lower() and player['tagLine'].lower() == tag.lower():
-            # returns details of the player if found
+            # returns details of player if found
+            print(f"===== Stats for {player['gameName']}#{player['tagLine']} =====\n"
+                  f"Average Kills: {player['average_kills']}\n"
+                  f"Average Deaths: {player['average_deaths']}\n"
+                  f"Win Rate: {player['win_rate']}%\n"
+                  f"Total Matches: {player['total_matches']}\n"
+                  f"Most Played Agent: {player['most_played_agent']}\n")
             return player
     # return None if player is not found (no value)
+    print(f"{username}#{tag} not found!")
     return None
 
 
@@ -140,7 +147,7 @@ def update_player(data, username, tag):
 
     return data
 
-data = update_player(data, player_name, player_tag)
+# data = update_player(data, player_name, player_tag)
 
 # Delete Function
 def delete_player(data, username, tag):
@@ -164,19 +171,24 @@ def delete_player(data, username, tag):
         json.dump(data, data_file, indent=4)
         print("Changes saved successfully!")
 
-data = delete_player(data, player_name, player_tag)
+# data = delete_player(data, player_name, player_tag)
 
 # # create a main menu function to give users the options on CRUD
-# def main_menu(data):
-#     # Display a list of options to user
-#     print("[=======Game Analytics Dashboard======]")
-#     print("1. View Player Stats")
-#     print("2. Update Player Stats")
-#     print("3. Delete Player")
-#     print("4. Exit")
-#     # Accept the user input of their choice
-#     choice = input("Which would you like to do? (1-4): ").strip()
-#     # Call function on user's choice
+def main_menu(data):
+    # Display a list of options for the user
+    print("[=======Game Analytics Dashboard======]")
+    print("1. View Player Stats")
+    print("2. Update Player Stats")
+    print("3. Delete Player")
+    print("4. Exit")
+    # Prompt user to get input of what option they want
+    choice = input("Which would you like to do? (1-4): ").strip()
+    
+    # Call on function based on user's choice
+    if choice == "1":
+        username = input("Enter a username: ").strip() 
+        tag = input("Enter a tag: ").strip()
+        search_player(data, username, tag)
 #     # So choice 1 should call onto the search function to look for the player and dislpay their stats
 #     if choice == "1":
 #         username = input("Enter a username: ").strip()
@@ -208,4 +220,4 @@ data = delete_player(data, player_name, player_tag)
 #     # choice 4 should exit
 #     # Allow users to exit menu
 #     return data
-# main_menu(data)
+main_menu(data)
