@@ -143,40 +143,43 @@ def delete_player(data, username, tag):
 
 # # create a main menu function to give users the options on CRUD
 def main_menu(data):
-    # Display a list of options for the user
-    print("[=======Game Analytics Dashboard======]")
-    print("1. View Player Stats")
-    print("2. Update Player Stats")
-    print("3. Delete Player")
-    print("4. Exit")
-    # Prompt user to get input of what option they want
-    choice = input("Which would you like to do? (1-4): ").strip()
-    
-    # Call on function based on user's choice
-    # choice 1 should call on the search_player function
-    if choice == "1":
-        username = input("Enter a username: ").strip()
-        while not username:
-            username = input("Enter a username. Field cannot be empty. ").strip() 
-        tag = input("Enter a tag: ").strip()
-        while not tag:
-            tag = input("Enter a tag. Field cannot be empty. ").strip()
-        search_player(data, username, tag)
-    # choice 2 should call on the update_player function
-    elif choice == "2":
-        username = input("Enter a username: ").strip()
-        tag = input("Enter a tag: ").strip()
-        update_player(data, username, tag)
-    # choice 3 should call on the delete_player function
-    elif choice == "3":
-        username = input("Enter a username: ").strip()
-        tag = input("Enter a tag: ").strip()
-        delete_player(data, username, tag)
-    # choice 4 should exit the program
-    elif choice == "4":
-        print("Exiting.. See you later!")
-    # else should print an error statement. If choice is invalid.
-    else:
-        print("Invalid choice. Pick a number between 1 to 4.")
-    return data
+    # add while loop so it re-prompts the menu screen until user picks option 4 to exit
+    menu_prompt = True
+    while menu_prompt:
+        # Display a list of options for the user
+        print("[=======Game Analytics Dashboard======]")
+        print("1. View Player Stats")
+        print("2. Update Player Stats")
+        print("3. Delete Player")
+        print("4. Exit")
+        # Prompt user to get input of what option they want
+        choice = input("Which would you like to do? (1-4): ").strip()
+        
+        # Call on function based on user's choice
+        # choice 1 should call on the search_player function
+        if choice == "1":
+            username = input("Enter a username: ").strip()
+            while not username:
+                username = input("Enter a username. Field cannot be empty. ").strip() 
+            tag = input("Enter a tag: ").strip()
+            while not tag:
+                tag = input("Enter a tag. Field cannot be empty. ").strip()
+            search_player(data, username, tag)
+        # choice 2 should call on the update_player function
+        elif choice == "2":
+            username = input("Enter a username: ").strip()
+            tag = input("Enter a tag: ").strip()
+            update_player(data, username, tag)
+        # choice 3 should call on the delete_player function
+        elif choice == "3":
+            username = input("Enter a username: ").strip()
+            tag = input("Enter a tag: ").strip()
+            delete_player(data, username, tag)
+        # choice 4 should exit the program
+        elif choice == "4":
+            print("Exiting.. See you later!")
+            menu_prompt = False
+        # else should print an error statement. If choice is invalid.
+        else:
+            print("Invalid choice. Pick a number between 1 to 4.")
 main_menu(data)
