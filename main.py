@@ -140,10 +140,10 @@ def delete_player(data, username, tag):
         return data
     
     # Prompt for user if they want to delete username#tag, Confirm deletion, print cancelled if user says no
-    confirm = input(f"Are you sure you want to delete {username}#{tag}? (Yes/No): ").lower()
+    confirm = input(f"Are you sure you want to delete {player['gameName']}#{player['tagLine']}? (Yes/No): ").lower()
     if confirm == "yes":
         data.remove(player)
-        print(f"{username}#{tag} has been removed.")
+        print(f"{player['gameName']}#{player['tagLine']} has been removed.")
     else:
         print("Deletion cancelled.")
         return data
