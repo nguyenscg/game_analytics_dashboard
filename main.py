@@ -90,6 +90,8 @@ def update_player(data, username, tag):
     # store the value the user enters
     new_stat = input(f"Enter a new value for {stat.replace("_", " ").title()}: ").strip()
 
+    # add a confirmation for user if they are sure they want to update the stat
+
     # check if the stat that the user picks matches
     if stat in ['average_kills', 'average_deaths', 'total_matches']:
         # this checks if it's a number
@@ -98,6 +100,15 @@ def update_player(data, username, tag):
             return data
         new_stat = int(new_stat)
     elif stat == "win_rate":
+        try:
+            new_stat = round(float(new_stat), 2)
+            # check if the value that the user enters is between 0 to 100, otherwise print out an error message
+            if not 0 <= new_stat <= 100:
+                print("Enter a number between 0 to 100.")
+                return data
+        except ValueError:
+            print("Invalid input. Enter a valid number.")
+            return data
         if not round(float(new_stat), 2):
             print("Please enter 0 to 100.")
             return data
