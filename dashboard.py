@@ -21,7 +21,7 @@ def hello_world():
 # add a search route that allows the user to 'search' for a player and display their stats
 @app.route("/search")
 def search():
-    return "<h1>Hello World!</h1>"
+    return render_template("search.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
