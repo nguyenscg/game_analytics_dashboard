@@ -6,7 +6,17 @@
     <title>Game Analytics Dashboard</title>
 </head>
 <body>
-    <h1>Hello World!</h1>
+    <h1>Welcome to the Game Analytics Dashboard!</h1>
+    {% for player in players %}
+    <h2> {{ player.gameName }}#{{ player.tagLine}}'s Stats</h2>
+    <ul>
+        <li>Average Kills: {{ player.average_kills }}</li>
+        <li>Average Deaths: {{ player.average_deaths }}</li>
+        <li>Win Rate: {{ player.win_rate }}</li>
+        <li>Total Matches: {{ player.total_matches }}</li>
+        <li>Most Played Agent: {{ player.most_played_agent }}</li>
+    </ul>
+    {% endfor %}
 </body>
 <footer>
     <p>Copyright {{ year }}. Built by Sophia Nguyen</p>
