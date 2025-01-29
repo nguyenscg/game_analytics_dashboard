@@ -8,14 +8,19 @@
 </head>
 <body>
     <h1>{{ results.gameName }}#{{ results.tagLine }}'s Stats </h1>
-    {% if results %}
-        <ul>
-                <li>Average Kills: {{ results.average_kills }}</li>
-                <li>Average Deaths: {{ results.average_deaths }}</li>
-                <li>Win Rate: {{ results.win_rate }}%</li>
-                <li>Total Matches: {{ results.total_matches }}</li>
-                <li>Most Played Agent: {{ results.most_played_agent }}</li>
-        </ul>
+    <div class="card" style="width: 18rem;">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{ results.gameName }}#{{ results.tagLine }}</h5>
+          {% if results %}
+          <p class="card-text">Average Kills: {{ results.average_kills }}</p>
+          <p class="card-text">Average Deaths: {{ results.average_deaths }}</p>
+          <p class="card-text">Win Rate: {{ results.win_rate }}%</p>
+          <p class="card-text">Total Matches: {{ results.total_matches }}</p>
+          <p class="card-text">Most Played Agent: {{ results.most_played_agent }}</p>
+          <a href="#" class="btn btn-primary">View Full Details</a>
+        </div>
+      </div>
     {% endif %}
 </body>
 </html>

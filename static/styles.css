@@ -1,0 +1,7 @@
+:root {
+    --bs-primary: #FF4E50;  /* Custom Primary Color */
+    --bs-secondary: #1C1C28;  /* Custom Secondary Color */
+    --bs-light: #F8F9FA;  /* Custom Light Background */
+    --bs-dark: #2C2C2C;  /* Custom Dark Text */
+    --bs-success: #5ED7C6;  /* Custom Accent */
+}
