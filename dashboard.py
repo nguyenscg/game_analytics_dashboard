@@ -19,8 +19,18 @@ def hello_world():
     return render_template("index.html", year=current_year, players=data)
 
 # add a search route that allows the user to 'search' for a player and display their stats
-@app.route("/search")
+@app.route("/search", methods=["GET", "POST"])
 def search():
+    if request.method == "POST":
+        player_name = request.form.get("username", "").strip().lower()
+        player_tag = request.form.get("tag", "").strip().lower()
+
+        found_player = None
+        for player in data:
+            if player_name == player['gameName'].lower() and player_tag == player['tagLine'].lower():
+                found_player = player
+                break
+        return render_template("search_results.html", username=player_name, tag=player_tag, results=found_player)
     return render_template("search.html")
 
 if __name__ == "__main__":
