@@ -7,11 +7,17 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
-    <h1>Welcome to the Game Analytics Dashboard!</h1>
-    <p>Wanna see how your favorite player is doing? View their stats.</p>
-    <a href="/search">Search for a Player</a>
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Welcome to the Game Analytics Dashboard!</h1>
+            <p>Wanna see how your favorite player is doing? View their stats.</p>
+            <a href="/search">Search for a Player</a>
+        </div>
+    </div>
 </body>
-<footer>
-    <p>Copyright {{ year }}. Built by Sophia Nguyen</p>
+<footer class="bg-body-tertiary text-center text-lg-start">
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+        Copyright {{ year }}. Built by Sophia Nguyen
+    </div>
 </footer>
 </html>
