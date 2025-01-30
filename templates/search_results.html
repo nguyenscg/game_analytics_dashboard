@@ -9,9 +9,9 @@
 </head>
 <body>
   <div class="container my-5">
+    {% if results %}
     <h1 class="text-center">{{ results.gameName }}#{{ results.tagLine }}'s Stats </h1>
 
-    {% if results %}
     <div class="card" style="width: 18rem;">
       <img src="https://via.placeholder.com/150" class="card-img-top" alt="Player Image">
       <div class="card-body">
