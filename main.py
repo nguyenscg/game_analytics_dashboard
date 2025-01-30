@@ -58,6 +58,59 @@ def search_player(data, username, tag):
     print(f"{username}#{tag} not found!")
     return None
 
+def create_player():
+    # Prompt the user for all necessary information
+    game_name = input("Enter player's game name: ").strip()
+    while not game_name:
+        game_name = input("Game name cannot be empty. Enter player's game name: ").strip()
+    
+    tag_line = input("Enter player's tag line: ").strip()
+    while not tag_line:
+        tag_line = input("Tag line cannot be empty. Enter player's tag line: ").strip()
+
+    avg_kills = input("Enter average kills: ").strip()
+    while not avg_kills.isdigit():
+        avg_kills = input("Please enter a valid number for average kills: ").strip()
+    avg_kills = int(avg_kills)
+
+    avg_deaths = input("Enter average deaths: ").strip()
+    while not avg_deaths.isdigit():
+        avg_deaths = input("Please enter a valid number for average deaths: ").strip()
+    avg_deaths = int(avg_deaths)
+
+    win_rate = input("Enter win rate (0-100): ").strip()
+    while not win_rate.replace('.', '', 1).isdigit() or not (0 <= float(win_rate) <= 100):
+        win_rate = input("Please enter a valid win rate between 0 and 100: ").strip()
+    win_rate = round(float(win_rate), 2)
+
+    total_matches = input("Enter total matches: ").strip()
+    while not total_matches.isdigit():
+        total_matches = input("Please enter a valid number for total matches: ").strip()
+    total_matches = int(total_matches)
+
+    most_played_agent = input("Enter most played agent: ").strip()
+    while not most_played_agent:
+        most_played_agent = input("Agent name cannot be empty. Enter most played agent: ").strip()
+
+    # Create a new player dictionary
+    new_player = {
+        "gameName": game_name,
+        "tagLine": tag_line,
+        "average_kills": avg_kills,
+        "average_deaths": avg_deaths,
+        "win_rate": win_rate,
+        "total_matches": total_matches,
+        "most_played_agent": most_played_agent
+    }
+
+    # Add the new player to the data
+    new_data.append(new_player)
+    print(f"Player {game_name}#{tag_line} created successfully!")
+    
+    with open("mock_data.json", "w") as data_file:
+        json.dump(new_data, data_file, indent=4)
+    print("Changes saved to mock_data.json successfully!")
+
 # # update a player's stats
 def update_player(data, username, tag):
     # search for player, call on search function
@@ -161,9 +214,10 @@ def main_menu(data):
         # Display a list of options for the user
         print("[=======Game Analytics Dashboard======]")
         print("1. View Player Stats")
-        print("2. Update Player Stats")
-        print("3. Delete Player")
-        print("4. Exit")
+        print("2. Create Player")
+        print("3. Update Player Stats")
+        print("4. Delete Player")
+        print("5. Exit")
         # Prompt user to get input of what option they want
         choice = input("Which would you like to do? (1-4): ").strip()
         
@@ -177,18 +231,21 @@ def main_menu(data):
             while not tag:
                 tag = input("Enter a tag. Field cannot be empty. ").strip()
             search_player(data, username, tag)
-        # choice 2 should call on the update_player function
+        # choice 2 should call on create_player function
         elif choice == "2":
-            username = input("Enter a username: ").strip()
-            tag = input("Enter a tag: ").strip()
-            update_player(data, username, tag)
-        # choice 3 should call on the delete_player function
+            create_player()
+        # choice 3 should call on the update_player function
         elif choice == "3":
             username = input("Enter a username: ").strip()
             tag = input("Enter a tag: ").strip()
-            delete_player(data, username, tag)
-        # choice 4 should exit the program
+            update_player(data, username, tag)
+        # choice 4 should call on the delete_player function
         elif choice == "4":
+            username = input("Enter a username: ").strip()
+            tag = input("Enter a tag: ").strip()
+            delete_player(data, username, tag)
+        # choice 5 should exit the program
+        elif choice == "5":
             print("Exiting.. See you later!")
             break
         # else should print an error statement. If choice is invalid.
