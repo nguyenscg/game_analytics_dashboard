@@ -6,3 +6,7 @@
     --bs-success: #5ED7C6;  /* Custom Accent */
 }
 
+/* BUTTON STYLING */
+.btn-primary {
+    background-color: var(--bs-primary);
+}
